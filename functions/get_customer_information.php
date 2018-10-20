@@ -48,13 +48,7 @@ function get_customer_external_jobs($conn, $cust_id, $name, $cell, $email){
 				            <td>'.$active_status.'</td>
 				            <td>'.$date.'</td>
 				            <td>
-				               <button type="button" class="btn btn-secondary edit-external" cust="'.$cust_id.'" external="'.$external_job_id.'">View Job</button>
-                               <form action="functions/create_pdf.php" method="post">
-                                   <input id="job-input-id" name="job-input-type" value="external" type="hidden"/>
-                                   <input id="job-input-id" name="job-input-id" value="'.$id.'" type="hidden"/>
-                                   <input id="cust-input-id" name="cust-input-id" value="'.$cust_id.'" type="hidden"/>
-                                   <input type="submit" name="create_pdf" class="btn btn-primary" value="Download PDF" />  
-                               </form>  
+				               <button type="button" class="btn btn-secondary edit-external" cust="'.$cust_id.'" external="'.$external_job_id.'">View Job</button> 
 				            </td>
 				        </tr>';
         }
@@ -72,7 +66,7 @@ function get_customer_internal_jobs($conn, $cust_id, $name, $cell, $email){
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             $id              = clean_input($row["id"]);
-            $external_job_id = clean_input($row["internal_job_id"]);
+            $internal_job_id = clean_input($row["internal_job_id"]);
             $active          = clean_input($row["active"]);
             $date            = clean_input($row["date"]);
 
@@ -104,12 +98,7 @@ function get_customer_internal_jobs($conn, $cust_id, $name, $cell, $email){
 				            <td>'.$active_status.'</td>
 				            <td>'.$date.'</td>
 				            <td>
-				              <form action="functions/create_pdf.php" method="post">
-				                  <input id="job-input-id" name="job-input-type" value="internal" type="hidden"/>
-				                  <input id="job-input-id" name="job-input-id" value="'.$id.'" type="hidden"/>
-				                  <input id="cust-input-id" name="cust-input-id" value="'.$cust_id.'" type="hidden"/>
-				                  <input type="submit" name="create_pdf" class="btn btn-primary" value="Download PDF" />  
-				              </form>  
+				              <button type="button" class="btn btn-secondary edit-external" cust="'.$cust_id.'" external="'.$internal_job_id.'">View Job</button> 
 				            </td>
 				        </tr>';
         }
