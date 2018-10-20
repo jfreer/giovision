@@ -138,4 +138,53 @@ $(document).ready(function(){
                 }  
            });  
       }); 
- });  
+ });
+ $(document).ready(function(){
+       var external_id = "";
+       var customer_id = "";  
+       $('.edit-external').on("click", function(event){ 
+            event.preventDefault();  
+            var ex_id = $(this).attr("external"); 
+            var cust_id = $(this).attr("cust");  
+            external_id = ex_id;
+            customer_id = cust_id;
+            $.ajax({  
+                 url:"functions/get_external_job.php",  
+                 method:"POST",  
+                 data:{ex_id:ex_id},  
+                 success:function(data){ 
+                      var data = JSON.parse(data);
+                      $('#e-description-input').prop("disabled", true); 
+                      $('#external_job_title').text('External Job Invoice #' + data.id);
+                      $('#e-description-input').val(data.description);   
+                      $('#view_external_job').modal('show');  
+                 }  
+            });  
+       });
+       $("#get_external_pdf").click(function() {
+          var input1 = $("<input>").attr("type", "hidden").attr("name", "cust_id").val(customer_id); 
+          var input2 = $("<input>").attr("type", "hidden").attr("name", "ex_id").val(external_id); 
+          $('#create_external_pdf').append(input1);
+          $('#create_external_pdf').append(input2);
+          $("#create_external_pdf").submit();
+       });
+       $('#update_customer_form').on("submit", function(event){  
+            event.preventDefault();   
+            $.ajax({  
+                url:"functions/update_customer.php",  
+                method:"POST",  
+                data:$('#update_customer_form').serialize() + '&cust_id=' + customer_id,  
+                beforeSend:function(){  
+                     $('#insert-u').val("Updating");  
+                },  
+                success:function(data){  
+                     if(data == 'successful'){
+                       $('#update_customer_form')[0].reset();  
+                       $('#add_data_Modal').modal('hide');   
+                   } else {
+                       alert(data);
+                   }
+                }  
+            });      
+       }); 
+  });   

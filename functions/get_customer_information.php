@@ -48,6 +48,7 @@ function get_customer_external_jobs($conn, $cust_id, $name, $cell, $email){
 				            <td>'.$active_status.'</td>
 				            <td>'.$date.'</td>
 				            <td>
+				               <button type="button" class="btn btn-secondary edit-external" cust="'.$cust_id.'" external="'.$external_job_id.'">View Job</button>
                                <form action="functions/create_pdf.php" method="post">
                                    <input id="job-input-id" name="job-input-type" value="external" type="hidden"/>
                                    <input id="job-input-id" name="job-input-id" value="'.$id.'" type="hidden"/>

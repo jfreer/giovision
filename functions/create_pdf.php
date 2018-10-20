@@ -134,6 +134,7 @@ function fetch_job_table($conn, $id, $cust_id, $type){
 	return $response;
 }
 
+print_r($_POST);
 if(isset($_POST["create_pdf"]) && isset($_POST["job-input-id"]) && isset($_POST["cust-input-id"]) && isset($_POST["job-input-type"]) && !empty($_POST["job-input-id"]) && 
 	!empty($_POST["cust-input-id"]) && !empty($_POST["job-input-type"])){ 
 
