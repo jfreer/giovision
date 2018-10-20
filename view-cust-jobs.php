@@ -530,42 +530,32 @@ include("functions/get_customer_information.php");
                                 <!-- USER DATA-->
                                 <div class="user-data m-b-30">
                                     <div class="filters m-b-45">
-                                        <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-                                            <select class="js-select2" name="property">
-                                                <option selected="selected">All Properties</option>
-                                                <option value="">Products</option>
-                                                <option value="">Services</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
+                                        <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border float-right">
+                                            <button class="au-btn au-btn-icon au-btn--blue au-btn--small" data-toggle="modal" data-target="#largeModal"><i class="zmdi zmdi-plus"></i>add job</button>
                                         </div>
-                                        <div class="rs-select2--dark rs-select2--sm rs-select2--border">
-                                            <select class="js-select2 au-select-dark" name="time">
-                                                <option selected="selected">All Time</option>
-                                                <option value="">By Month</option>
-                                                <option value="">By Day</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
+                                        <div class="rs-select2--dark rs-select2--lg m-r-10 rs-select2--border float-left">
+                                            <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="fa fa-search"></i>&#160;Search</span>
+                                              </div>
+                                              <input type="text" id="job-search" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="table-responsive table-data">
-                                        <table class="table">
+                                        <table class="table table-data2" id="table">
                                             <thead>
                                                 <tr>
-                                                    <td>
-                                                        <label class="au-checkbox">
-                                                            <input type="checkbox">
-                                                            <span class="au-checkmark"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>#invoice id</td>
-                                                    <td>name</td>
-                                                    <td>type</td>
-                                                    <td>status</td>
-                                                    <td>date issued</td>
-                                                    <td>job details</td>
+                                                    <th onclick="sortTable(0)"><a style="color: #555;" href="#">#invoice id</a></th>
+                                                    <th onclick="sortTable(1)"><a style="color: #555;" href="#">name</a></th>
+                                                    <th onclick="sortTable(2)"><a style="color: #555;" href="#">type</a></th>
+                                                    <th onclick="sortTable(3)"><a style="color: #555;" href="#">status</a></th>
+                                                    <th onclick="sortTable(4)"><a style="color: #555;" href="#">date issued</a></th>
+                                                    <th>job details</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="job-table-search">
                                                 <?php echo get_all_customer_jobs($conn, $cust_id, $name, $cell_no, $email); ?>
                                             </tbody>
                                         </table>

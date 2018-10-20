@@ -531,52 +531,34 @@ include("functions/get_all_jobs.php");
                                 <hr>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                        <div class="rs-select2--light rs-select2--md">
-                                            <select class="js-select2" name="property">
-                                                <option selected="selected">All Properties</option>
-                                                <option value="">Option 1</option>
-                                                <option value="">Option 2</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
+                                        <div class="rs-select2--dark rs-select2--lg rs-select2--dark2">
+                                            <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="fa fa-search"></i>&#160;Search</span>
+                                              </div>
+                                              <input type="text" id="customer-search" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
                                         </div>
-                                        <div class="rs-select2--light rs-select2--sm">
-                                            <select class="js-select2" name="time">
-                                                <option selected="selected">Today</option>
-                                                <option value="">3 Days</option>
-                                                <option value="">1 Week</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                        <button class="au-btn-filter">
-                                            <i class="zmdi zmdi-filter-list"></i>filters</button>
                                     </div>
                                     <div class="table-data__tool-right">
                                         <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#largeModal">
                                             <i class="zmdi zmdi-plus"></i>add customer</button>
-                                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                                            <select class="js-select2" name="type">
-                                                <option selected="selected">Export</option>
-                                                <option value="">Option 1</option>
-                                                <option value="">Option 2</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="table-responsive table-responsive-data2">
-                                    <table class="table table-data2">
+                                    <table class="table table-data2" id="table">
                                         <thead>
                                             <tr>
-                                                <th>#ID</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Cell No.</th>
-                                                <th>Residential Address</th>
-                                                <th>No. Open Jobs</th>
+                                                <th onclick="sortTable(0)"><a style="color: #555;" href="#">#ID</a></th>
+                                                <th onclick="sortTable(1)"><a style="color: #555;" href="#">Name</a></th>
+                                                <th onclick="sortTable(2)"><a style="color: #555;" href="#">Email</a></th>
+                                                <th onclick="sortTable(3)"><a style="color: #555;" href="#">Cell No.</a></th>
+                                                <th onclick="sortTable(4)"><a style="color: #555;" href="#">Residential Address</a></th>
+                                                <th onclick="sortTable(5)"><a style="color: #555;" href="#">No. Open Jobs</a></th>
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="customer-table-search">
                                            <?php echo get_all_customer_information($conn); ?>
                                         </tbody>
                                     </table>

@@ -51,9 +51,7 @@ function get_all_customer_information($conn){
                             </td>
                             <td class="desc">'.$cell.'</td>
                             <td><span class="block-email">'.$residential_address.'</span></td>
-                            <td>
-                              <a href="view-cust-jobs.php?cust='.$cust_id.'"><span class="status--process">'.get_total_no_of_open_jobs($conn,$cust_id).'</span></a>
-                            </td>
+                            <td class="desc">'.get_total_no_of_open_jobs($conn,$cust_id).'</td>
                             <td>
                                 <div class="table-data-feature">
                                     <button class="item add_job" data-toggle="modal" id="'.$cust_id.'" data-placement="top" title="Add Job" data-target="#modal'.$id.'">
@@ -62,16 +60,17 @@ function get_all_customer_information($conn){
                                     <button class="item edit_data" id="'.$cust_id.'" data-placement="top" title="Edit">
                                         <i class="zmdi zmdi-edit"></i>
                                     </button>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                        <i class="zmdi zmdi-file-text"></i>
-                                    </button>
+                                    <a href="view-cust-jobs.php?cust='.$cust_id.'">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="View Jobs">
+                                            <i class="zmdi zmdi-file-text"></i>
+                                        </button>
+                                    </a>
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
                                     </button>
                                 </div>
                             </td>
-                        </tr>
-                        <tr class="spacer"></tr>';
+                        </tr>';
 
         }
     }

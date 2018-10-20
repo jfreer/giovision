@@ -27,12 +27,6 @@ function get_customer_external_jobs($conn, $cust_id, $name, $cell, $email){
             }
 
 			$response .= '<tr>
-				            <td>
-				                <label class="au-checkbox">
-				                    <input type="checkbox">
-				                    <span class="au-checkmark"></span>
-				                </label>
-				            </td>
 				            <td>#'.$id.'</td>
 				            <td>
 				                <div class="table-data__info">
@@ -77,12 +71,6 @@ function get_customer_internal_jobs($conn, $cust_id, $name, $cell, $email){
             }
 
 			$response .= '<tr>
-				            <td>
-				                <label class="au-checkbox">
-				                    <input type="checkbox">
-				                    <span class="au-checkmark"></span>
-				                </label>
-				            </td>
 				            <td>#'.$id.'</td>
 				            <td>
 				                <div class="table-data__info">
