@@ -705,7 +705,7 @@ include("functions/get_customer_information.php");
                             </div>
                             <div class="modal-footer">
                                 <form action="functions/create_pdf.php" method="post" enctype="multipart/form-data" class="form-horizontal" id="create_external_pdf" target="_blank">
-                                    <button type="submit" name="get_external_pdf" id="get_external_pdf" value="Download PDF" class="btn btn-danger btn-sm">
+                                    <button type="submit" name="create_pdf" id="get_external_pdf" value="Download PDF" class="btn btn-danger btn-sm">
                                         <i class="fa fa-file"></i> Download PDF
                                     </button>
                                 </form>

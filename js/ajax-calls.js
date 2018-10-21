@@ -163,9 +163,11 @@ $(document).ready(function(){
        });
        $("#get_external_pdf").click(function() {
           var input1 = $("<input>").attr("type", "hidden").attr("name", "cust_id").val(customer_id); 
-          var input2 = $("<input>").attr("type", "hidden").attr("name", "ex_id").val(external_id); 
+          var input2 = $("<input>").attr("type", "hidden").attr("name", "job_id").val(external_id); 
+          var input3 = $("<input>").attr("type", "hidden").attr("name", "job_type").val("external"); 
           $('#create_external_pdf').append(input1);
           $('#create_external_pdf').append(input2);
+          $('#create_external_pdf').append(input3);
           $("#create_external_pdf").submit();
        });
        $('#update_customer_form').on("submit", function(event){  
