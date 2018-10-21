@@ -695,21 +695,22 @@ include("functions/get_customer_information.php");
                                             <button type="submit" name="insert" id="insert" value="Insert" value="Insert" class="btn btn-primary btn-sm">
                                                 <i class="fa fa-dot-circle-o"></i> Update
                                             </button>
-
-                                            <button type="button" name="insert" id="insert" value="Insert" value="Insert" class="btn btn-success btn-sm">
-                                                <i class="fa fa-check"></i> Mark As Complete
-                                            </button>
                                         </div>
                                     </div>
                                </form>
                             </div>
                             <div class="modal-footer">
+                                <button type="button" name="insert" id="insert" value="Insert" value="Insert" class="btn btn-success btn-sm">
+                                    <i class="fa fa-check"></i> Mark As Complete
+                                </button>
                                 <form action="functions/create_pdf.php" method="post" enctype="multipart/form-data" class="form-horizontal" id="create_external_pdf" target="_blank">
                                     <button type="submit" name="create_pdf" id="get_external_pdf" value="Download PDF" class="btn btn-danger btn-sm">
                                         <i class="fa fa-file"></i> Download PDF
                                     </button>
                                 </form>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                                    <i class="fa fa-times"></i> Close
+                                </button>
                             </div>
                         </div>
                     </div>
