@@ -9,10 +9,11 @@ include($path."/giovision/functions/sanitize.php");
 
 if(isset($_POST) && !empty($_POST["ex_id"]) && isset($_POST["ex_id"])){
 	$ex_id       = clean_input_db($conn,$_POST["ex_id"]);
+	$invoice     = clean_input_db($conn,$_POST["invoice-input-e"]);
 	$description = clean_input_db($conn,$_POST["description-input-e"]);
 
 
-	$sql = "UPDATE external_jobs SET `description`='$description' WHERE `external_job_id` = '$ex_id'";
+	$sql = "UPDATE external_jobs SET `description`='$description', `invoice`='$invoice' WHERE `external_job_id` = '$ex_id'";
 
 	if($conn->query($sql) == TRUE){
         echo 'successful';

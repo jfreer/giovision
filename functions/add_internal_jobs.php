@@ -14,15 +14,18 @@ function insert_spare_list($conn, $internal_job_id){
        	   $spare_name   = clean_input_db($conn, $_POST["spares-input"][$i]);
        	   $spare_qty    = clean_input_db($conn, $_POST["qty-input"][$i]);
        	   $spare_amount = clean_input_db($conn, $_POST["amount-input"][$i]);
-           $sql = "INSERT INTO list_of_spares (internal_job_id, spares, quantity, amount) VALUES('$internal_job_id', '$spare_name', '$spare_qty', '$spare_amount')";  
-           $conn->query($sql);
-       } 
+       	   if(!empty($spare_name) && !empty($spare_qty) && !empty($spare_amount)){
+	           $sql = "INSERT INTO list_of_spares (internal_job_id, spares, quantity, amount) VALUES('$internal_job_id', '$spare_name', '$spare_qty', '$spare_amount')";  
+	           $conn->query($sql);
+	       }
+        } 
     }    
 }
 
 if(isset($_POST)){
 	$internal_job_id = bin2hex(random_bytes(16));
 	$cust_id         = clean_input_db($conn,$_POST["customer-input"]);
+	$invoice         = clean_input_db($conn,$_POST["invoice-input"]);
 	$article         = clean_input_db($conn,$_POST["article-input"]);
 	$model_no        = clean_input_db($conn,$_POST["model-input"]);
 	$fault           = clean_input_db($conn,$_POST["fault-input"]);
@@ -33,8 +36,8 @@ if(isset($_POST)){
 
 	insert_spare_list($conn, $internal_job_id);
 
-	$sql = "INSERT INTO internal_jobs (internal_job_id, cust_id, article, model_no, fault, damages, description, aux_equip, date) 
-	VALUES ('$internal_job_id', '$cust_id', '$article', '$model_no', '$fault', '$damages', '$description', '$aux_equip', '$date')";
+	$sql = "INSERT INTO internal_jobs (internal_job_id, cust_id, invoice, article, model_no, fault, damages, description, aux_equip, date) 
+	VALUES ('$internal_job_id', '$cust_id', '$invoice', '$article', '$model_no', '$fault', '$damages', '$description', '$aux_equip', '$date')";
 
 	if ($conn->query($sql) === TRUE) {
 	    echo 'successful';

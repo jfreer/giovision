@@ -1,7 +1,7 @@
 <?php
 include("include/session.php");
 include("include/db_conx.php");
-include("functions/get_customer_information.php");
+include("functions/get_all_job_information.php");
 
 ?>
 <!DOCTYPE html>
@@ -64,7 +64,7 @@ include("functions/get_customer_information.php");
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="overview-wrap">
-                                    <h2 class="title-1">Jobs For <?php echo $name; ?></h2>
+                                    <h2 class="title-1">Overview Of All Jobs</h2>
                                 </div>
                                 <hr>
                             </div>
@@ -145,7 +145,12 @@ include("functions/get_customer_information.php");
                                 <div class="user-data m-b-30">
                                     <div class="filters m-b-45">
                                         <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border float-right">
-                                            <button class="au-btn au-btn-icon au-btn--blue au-btn--small" data-toggle="modal" data-target="#create_job"><i class="zmdi zmdi-plus"></i>add job</button>
+                                            <a href="index.php">
+                                              <button class="au-btn au-btn-icon au-btn--blue au-btn--small"><i class="zmdi zmdi-plus"></i>add job</button>
+                                            </a>
+                                            <!-- 
+                                              <button class="au-btn au-btn-icon au-btn--blue au-btn--small" data-toggle="modal" data-target="#create_job"><i class="zmdi zmdi-plus"></i>add job</button>
+                                            -->
                                         </div>
                                         <div class="rs-select2--dark rs-select2--lg m-r-10 rs-select2--border float-left">
                                             <div class="input-group mb-3">
@@ -170,7 +175,7 @@ include("functions/get_customer_information.php");
                                                 </tr>
                                             </thead>
                                             <tbody id="job-table-search">
-                                                <?php echo get_all_customer_jobs($conn, $cust_id, $name, $cell_no, $email); ?>
+                                                <?php echo $view_all_jobs_table; ?>
                                             </tbody>
                                         </table>
                                     </div>

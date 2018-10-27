@@ -39,13 +39,13 @@ function get_status_code($conn, $job_id, $job_type){
 
 }
 
-if(isset($_POST) && !empty($_POST["input_job_id"]) && isset($_POST["input_job_id"]) && !empty($_POST["input_job_type"]) && isset($_POST["input_job_type"])){
+if(isset($_POST) && !empty($_POST["job_id"]) && isset($_POST["job_id"]) && !empty($_POST["job_type"]) && isset($_POST["job_type"])){
 	$job_type_db = '';
 	$job_id_db = '';
 
-	$job_id    = clean_input_db($conn,$_POST["input_job_id"]);
-	$job_type  = clean_input_db($conn,$_POST["input_job_type"]);
-	$new_active_status = get_status_code($conn, $job_id, $job_type)
+	$job_id    = clean_input_db($conn,$_POST["job_id"]);
+	$job_type  = clean_input_db($conn,$_POST["job_type"]);
+	$new_active_status = get_status_code($conn, $job_id, $job_type);
 
 	if($job_type == 'internal'){
 		$job_type_db = 'internal_jobs';

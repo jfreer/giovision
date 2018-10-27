@@ -10,10 +10,11 @@ include($path."/giovision/functions/sanitize.php");
 if(isset($_POST)){
 	$external_job_id     = bin2hex(random_bytes(16));
 	$cust_id             = clean_input_db($conn,$_POST["customer-input"]);
+	$invoice             = clean_input_db($conn,$_POST["invoice-input"]); 
 	$description         = clean_input_db($conn,$_POST["description-input"]);
 	$date                = date("Y-m-d H:i:s");
 
-	$sql = "INSERT INTO external_jobs (external_job_id, cust_id, description, date) VALUES ('$external_job_id','$cust_id','$description', '$date')";
+	$sql = "INSERT INTO external_jobs (external_job_id, cust_id, invoice, description, date) VALUES ('$external_job_id', '$cust_id', '$invoice','$description', '$date')";
 
 	if ($conn->query($sql) === TRUE) {
 	    echo 'successful';

@@ -32,47 +32,41 @@ function fetch_customer($conn, $cust_id){
 
 	        $response .= '<h3 align="center">Customer Information</h3><br /><br /> 
                            <table border="1" cellspacing="0" cellpadding="5">
-                           <thead>
-                             <tr>
-                               <th scope="col">Name</th>
-                               <th scope="col">Description</th>
-                             </tr>
-                           </thead>
                            <tbody>
                              <tr>
-                               <th scope="row">Name: </th>
+                               <th scope="row"><strong>Name: </strong></th>
                                <td>'.$name.'</td>
                              </tr>
                              <tr>
-                               <th scope="row">Email: </th>
+                               <th scope="row"><strong>Email: </strong></th>
                                <td>'.$email.'</td>
                              </tr>
                              <tr>
-                               <th scope="row">Cell No: </th>
+                               <th scope="row"><strong>Cell No: </strong></th>
                                <td>'.$cell_no.'</td>
                              </tr>
                              <tr>
-                               <th scope="row">Tel No: </th>
+                               <th scope="row"><strong>Tel No: </strong></th>
                                <td>'.$tel_no.'</td>
                              </tr>
                              <tr>
-                               <th scope="row">Residential Address: </th>
+                               <th scope="row"><strong>Residential Address: </strong></th>
                                <td>'.$residential_address.'</td>
                              </tr>
                              <tr>
-                               <th scope="row">Postal Address: </th>
+                               <th scope="row"><strong>Postal Address: </strong></th>
                                <td>'.$postal_address.'</td>
                              </tr>
                              <tr>
-                               <th scope="row">Payment Method: </th>
+                               <th scope="row"><strong>Payment Method: </strong></th>
                                <td>'.$payment_method.'</td>
                              </tr>
                              <tr>
-                               <th scope="row">Multichoice Account No: </th>
+                               <th scope="row"><strong>Multichoice Account No: </strong></th>
                                <td>'.$multichoice_acc.'</td>
                              </tr>
                              <tr>
-                               <th scope="row">SABC License: </th>
+                               <th scope="row"><strong>SABC License: </strong></th>
                                <td>'.$sabc_license.'</td>
                              </tr>
                            </tbody>
@@ -100,19 +94,13 @@ function fetch_customer_external_job($conn, $job_id){
 
             $response .= '<h3 align="center">External Job Information</h3><br /><br /> 
                            <table border="1" cellspacing="0" cellpadding="5">
-                           <thead>
-                             <tr>
-                               <th scope="col">Name</th>
-                               <th scope="col">Description</th>
-                             </tr>
-                           </thead>
                            <tbody>
                              <tr>
-                               <th scope="row">Description: </th>
+                               <th scope="row"><strong>Description: </strong></th>
                                <td>'.$description.'</td>
                              </tr>
                              <tr>
-                               <th scope="row">Date Issued: </th>
+                               <th scope="row"><strong>Date Issued: </strong></th>
                                <td>'.$date.'</td>
                              </tr>
                            </tbody>
@@ -124,18 +112,119 @@ function fetch_customer_external_job($conn, $job_id){
     return $response;
 }
 
+function fetch_spares_list($conn, $job_id){
+  $response = "";
+  $active_status = "";
+    $sql = "SELECT * FROM `list_of_spares` WHERE `internal_job_id` = '$job_id'";
+    $result = $conn->query($sql);
+
+    $response .= '<h3 align="center">List Of Spares</h3><br /><br /> 
+                   <table border="1" cellspacing="0" cellpadding="5">
+                   <thead>
+                       <tr>
+                           <th><strong>Spares</strong></th>
+                           <th><strong>Quantity</strong></th>
+                           <th><strong>Amount</strong></th>
+                       </tr>
+                   </thead>
+                   <tbody>';
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $id              = clean_input($row["id"]);
+            $internal_job_id = clean_input($row["internal_job_id"]);
+            $spares          = clean_input($row["spares"]);
+            $quantity        = clean_input($row["quantity"]);
+            $amount          = clean_input($row["amount"]);
+
+            $response .= '<tr>
+                            <td>'.$spares.'</td>
+                            <td>'.$quantity.'</td>
+                            <td>R'.$amount.'</td>
+                         </tr>';
+                          
+        }
+    }
+
+    $response .=  '</tbody>
+                </table>';  
+
+
+    return $response;
+}
+
+function fetch_customer_internal_job($conn, $job_id){
+  $response = "";
+  $active_status = "";
+    $sql = "SELECT * FROM `internal_jobs` WHERE `internal_job_id` = '$job_id'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $id          = clean_input($row["internal_job_id"]);
+            $article     = clean_input($row["article"]);
+            $model_no    = clean_input($row["model_no"]);
+            $fault       = clean_input($row["fault"]);
+            $damages     = clean_input($row["damages"]);
+            $description = clean_input($row["description"]);
+            $aux_equip   = clean_input($row["aux_equip"]);
+            $date        = clean_input($row["date"]);
+
+            $response .= '<h3 align="center">Internal Job Information</h3><br /><br /> 
+                           <table border="1" cellspacing="0" cellpadding="5">
+                           <tbody>
+                             <tr>
+                               <th scope="row"><strong>Article: </strong></th>
+                               <td>'.$article.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Model No: </strong></th>
+                               <td>'.$model_no.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Aux Equipment With: </strong></th>
+                               <td>'.$aux_equip.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Fault: </strong></th>
+                               <td>'.$fault.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Damages: </strong></th>
+                               <td>'.$damages.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Description: </strong></th>
+                               <td>'.$description.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Date Issued: </strong></th>
+                               <td>'.$date.'</td>
+                             </tr>
+                           </tbody>
+                       </table>';  
+
+        }
+    }
+    $response .= fetch_spares_list($conn, $job_id);
+    return $response;
+}
+
 function fetch_job_table($conn, $job_id, $cust_id, $type){
 	$response = "";
 	$response .= fetch_customer($conn, $cust_id);
 
 	if($type == "external"){
        $response .= fetch_customer_external_job($conn, $job_id);
-	}
+
+	} elseif ($type == "internal") {
+       $response .= fetch_customer_internal_job($conn, $job_id);
+  }
   
 	return $response;
 }
 
-print_r($_POST);
+
 if(isset($_POST["create_pdf"]) && isset($_POST["cust_id"]) && isset($_POST["job_id"]) && isset($_POST["job_type"]) && !empty($_POST["cust_id"]) && 
 	!empty($_POST["job_id"]) && !empty($_POST["job_type"])){ 
 
