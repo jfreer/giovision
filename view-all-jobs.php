@@ -145,12 +145,7 @@ include("functions/get_all_job_information.php");
                                 <div class="user-data m-b-30">
                                     <div class="filters m-b-45">
                                         <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border float-right">
-                                            <a href="index.php">
-                                              <button class="au-btn au-btn-icon au-btn--blue au-btn--small"><i class="zmdi zmdi-plus"></i>add job</button>
-                                            </a>
-                                            <!-- 
-                                              <button class="au-btn au-btn-icon au-btn--blue au-btn--small" data-toggle="modal" data-target="#create_job"><i class="zmdi zmdi-plus"></i>add job</button>
-                                            -->
+                                        
                                         </div>
                                         <div class="rs-select2--dark rs-select2--lg m-r-10 rs-select2--border float-left">
                                             <div class="input-group mb-3">
@@ -343,36 +338,6 @@ include("functions/get_all_job_information.php");
                                 <button type="submit" class="btn btn-secondary btn-sm" data-dismiss="modal">
                                     <i class="fa fa-times"></i> Close
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="create_job" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="largeModalLabel">Add New Job</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                               <center>
-                                   <blockquote class="blockquote mt-3 text-center">
-                                       <p>What Job Do You Want To Create For <?php echo clean_input($name) ?></p>
-                                   </blockquote>
-                                   <hr>
-                                   <br>
-                                   <a href="internal.php?cust=<?php echo clean_input($_GET["cust"]) ?>">
-                                       <button class="au-btn au-btn-icon au-btn--blue"><i class="zmdi zmdi-plus"></i>Add Internal Job Card</button>
-                                   </a>&nbsp;&nbsp;&nbsp;
-                                   <a href="external.php?cust=<?php echo clean_input($_GET["cust"]) ?>">
-                                       <button class="au-btn au-btn-icon au-btn--blue"><i class="zmdi zmdi-plus"></i>Add External Job Card</button>
-                                   </a>
-                               </center>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>
