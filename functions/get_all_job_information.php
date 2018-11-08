@@ -26,7 +26,8 @@ function get_customer_external_jobs($i, $conn, $cust_id, $name, $cell, $email){
             	$active_status = '<span class="role member" id="eb'.$i.'">Completed</span>';
             }
 
-			$response .= '<tr>
+            $response .= '<tr>
+                            <td style="vertical-align:middle">#E'.$id.'</td>            
 				            <td id="ineb'.$i.'">#'.$invoice.'</td>
 				            <td>
 				                <div class="table-data__info">
@@ -71,7 +72,8 @@ function get_customer_internal_jobs($i, $conn, $cust_id, $name, $cell, $email){
             	$active_status = '<span class="role member" id="ib'.$i.'">Completed</span>';
             }
 
-			$response .= '<tr>
+            $response .= '<tr>
+                            <td style="vertical-align:middle">#I'.$id.'</td>            
 				            <td id="inib'.$i.'">#'.$invoice.'</td>
 				            <td>
 				                <div class="table-data__info">
