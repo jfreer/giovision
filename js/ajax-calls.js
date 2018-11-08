@@ -162,7 +162,7 @@ $(document).ready(function(){
                  data:{ex_id:ex_id},  
                  success:function(data){
                       var data = JSON.parse(data);
-                      $('#external_job_title').text('External Job #E' + data.id);
+                      $('#external_job_title').text('External Job #E-' + data.id);
                       $('#description-input-e').val(data.description);
                       $('#invoice-input-e').val(data.invoice); 
                       
@@ -190,7 +190,7 @@ $(document).ready(function(){
                  data:{in_id:in_id},  
                  success:function(data){
                       var data = JSON.parse(data);
-                      $('#internal_job_title').text('Internal Job #I' + data.id);
+                      $('#internal_job_title').text('Internal Job #I-' + data.id);
                       $('#i-invoice-input').val(data.invoice);
                       $('#i-article-input').val(data.article);
                       $('#i-model-input').val(data.model_no); 
