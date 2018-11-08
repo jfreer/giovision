@@ -161,11 +161,12 @@ include("functions/get_customer_information.php");
                                         <table class="table table-data2" id="table">
                                             <thead>
                                                 <tr>
-                                                    <th onclick="sortTable(0)"><a style="color: #555;" href="#">#invoice</a></th>
-                                                    <th onclick="sortTable(1)"><a style="color: #555;" href="#">name</a></th>
-                                                    <th onclick="sortTable(2)"><a style="color: #555;" href="#">type</a></th>
-                                                    <th onclick="sortTable(3)"><a style="color: #555;" href="#">status</a></th>
-                                                    <th onclick="sortTable(4)"><a style="color: #555;" href="#">date issued</a></th>
+                                                    <th onclick="sortTable(0)"><a style="color: #555;" href="#">job id</a></th>
+                                                    <th onclick="sortTable(1)"><a style="color: #555;" href="#">#invoice</a></th>
+                                                    <th onclick="sortTable(2)"><a style="color: #555;" href="#">name</a></th>
+                                                    <th onclick="sortTable(3)"><a style="color: #555;" href="#">type</a></th>
+                                                    <th onclick="sortTable(4)"><a style="color: #555;" href="#">status</a></th>
+                                                    <th onclick="sortTable(5)"><a style="color: #555;" href="#">date issued</a></th>
                                                     <th>job details</th>
                                                 </tr>
                                             </thead>
