@@ -74,6 +74,17 @@ $(document).ready(function(){
           $('#row'+button_id+'').remove();  
      });  
 });  
+$(document).ready(function(){  
+     var i=1;  
+     $('#add-e').click(function(){  
+          i++;  
+          $('#spare-list-e').append('<div class="row form-group" id="row'+i+'"><div class="col col-md-3"><label for="textarea-input" class=" form-control-label"></label></div><div class="col-2"><input type="text" name="spares-input[]" id="spares-input" class="form-control" placeholder="Spares"></div><div class="col-2"><input type="text" name="qty-input[]" id="spares-input" class="form-control" placeholder="Qty"></div><div class="col-2"><input type="text" name="amount-input[]" id="spares-input" class="form-control" placeholder="Amount"></div><div class="col-2"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></div></div>');  
+     });  
+     $(document).on('click', '.btn_remove', function(){  
+          var button_id = $(this).attr("id");   
+          $('#row'+button_id+'').remove();  
+     });  
+}); 
 $(document).ready(function(){
       var customer_id = "";  
       $('.edit_data').on("click", function(event){ 
@@ -90,6 +101,7 @@ $(document).ready(function(){
                      $('#email-input-u').val(data.email);  
                      $('#tel-input-u').val(data.tel_no);  
                      $('#cell-input-u').val(data.cell_no);  
+                     $('#pastel-input-u').val(data.pastel_no);  
                      $('#residential-input-u').val(data.residential_address);  
                      $('#postal-input-u').val(data.postal_address); 
                      $('#multichoice-input-u').val(data.multichoice_acc);  
@@ -146,6 +158,10 @@ $(document).ready(function(){
  $(document).ready(function(){
        var external_id = "";
        var internal_id = "";
+       var internal_invoice = "";
+       var external_invoice = "";
+       var external_active = "";
+       var internal_active = "";
        var customer_id = "";  
        var button_id = "";
        $('.edit-external').on("click", function(event){ 
@@ -163,13 +179,71 @@ $(document).ready(function(){
                  success:function(data){
                       var data = JSON.parse(data);
                       $('#external_job_title').text('External Job #E-' + data.id);
-                      $('#description-input-e').val(data.description);
-                      $('#invoice-input-e').val(data.invoice); 
+                      $('#e-invoice-input').val(data.invoice);
+                      $('#e-article-input').val(data.article);
+                      $('#e-model-input').val(data.model_no); 
+                      $('#e-aux-input').val(data.aux_equip); 
+                      $('#e-fault-input').val(data.fault); 
+                      $('#e-damages-input').val(data.damages); 
+                      $('#e-description-input').val(data.description); 
+
+                      external_invoice = data.invoice;
+                      external_active = data.active;
                       
                       if(data.active == '1'){
                         $('#active_change_buttons_external').html('<button type="submit" name="active_change" id="active_change" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Mark As Complete</button>');
                       } else if(data.active == '0'){
                         $('#active_change_buttons_external').html('<button type="submit" name="active_change" id="active_change" class="btn btn-warning btn-sm"><i class="fa fa-plus"></i> Reopen Job</button>');
+                      }
+
+
+                      $('#add-spare-list-e').empty();
+                      $('#spare-list-e').empty();
+                      if((data.list_of_spares).length == 0){
+                          $('#add-spare-list-e').append(`
+                           <div class="row form-group">
+                             <div class="col col-md-3">
+                               <label for="textarea-input" class=" form-control-label">List Of Spares</label>
+                             </div>
+                             <div class="col-2">
+                               <input type="text" name="spares-input[]" value="" id="spares-input" class="form-control" placeholder="Spares"></div>
+                             <div class="col-2">
+                               <input type="text" name="qty-input[]" value="" id="spares-input" class="form-control" placeholder="Qty"></div>
+                             <div class="col-2">
+                               <input type="text" name="amount-input[]" value="" id="spares-input" class="form-control" placeholder="Amount"></div>
+                           </div>`);
+                      }
+                      for (i in data.list_of_spares){
+                           var { spares, quantity, amount } = JSON.parse(data.list_of_spares[i]);
+                           if(i == 0){
+                               $('#add-spare-list-e').append(`
+                                <div class="row form-group">
+                                  <div class="col col-md-3">
+                                    <label for="textarea-input" class=" form-control-label">List Of Spares</label>
+                                  </div>
+                                  <div class="col-2">
+                                    <input type="text" name="spares-input[]" value="${spares}" id="spares-input" class="form-control" placeholder="Spares"></div>
+                                  <div class="col-2">
+                                    <input type="text" name="qty-input[]" value="${quantity}" id="spares-input" class="form-control" placeholder="Qty"></div>
+                                  <div class="col-2">
+                                    <input type="text" name="amount-input[]" value="${amount}" id="spares-input" class="form-control" placeholder="Amount"></div>
+                                </div>`);
+                           } else {
+                               $('#add-spare-list-e').append(`
+                                <div class="row form-group" id="rowlist${i}">
+                                  <div class="col col-md-3">
+                                    <label for="textarea-input" class=" form-control-label"></label>
+                                  </div>
+                                  <div class="col-2">
+                                    <input type="text" name="spares-input[]" value="${spares}" id="spares-input" class="form-control" placeholder="Spares"></div>
+                                  <div class="col-2">
+                                    <input type="text" name="qty-input[]" value="${quantity}" id="spares-input" class="form-control" placeholder="Qty"></div>
+                                  <div class="col-2">
+                                    <input type="text" name="amount-input[]" value="${amount}" id="spares-input" class="form-control" placeholder="Amount"></div>
+                                  <div class="col-2">
+                                    <button type="button" name="remove" id="list${i}" class="btn btn-danger btn_remove">X</button></div>
+                                </div>`);
+                           }
                       }
 
                       $('#view_external_job').modal('show');  
@@ -198,15 +272,33 @@ $(document).ready(function(){
                       $('#i-fault-input').val(data.fault); 
                       $('#i-damages-input').val(data.damages); 
                       $('#i-description-input').val(data.description);  
+
+                      internal_invoice = data.invoice;
+                      internal_active = data.active;
                       
                       if(data.active == '1'){
                         $('#active_change_buttons_internal').html('<button type="submit" name="active_change" id="active_change" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Mark As Complete</button>');
                       } else if(data.active == '0'){
                         $('#active_change_buttons_internal').html('<button type="submit" name="active_change" id="active_change" class="btn btn-warning btn-sm"><i class="fa fa-plus"></i> Reopen Job</button>');
                       }
+
                       
                       $('#add-spare-list').empty();
                       $('#spare-list').empty();
+                      if((data.list_of_spares).length == 0){
+                          $('#add-spare-list').append(`
+                           <div class="row form-group">
+                             <div class="col col-md-3">
+                               <label for="textarea-input" class=" form-control-label">List Of Spares</label>
+                             </div>
+                             <div class="col-2">
+                               <input type="text" name="spares-input[]" value="" id="spares-input" class="form-control" placeholder="Spares"></div>
+                             <div class="col-2">
+                               <input type="text" name="qty-input[]" value="" id="spares-input" class="form-control" placeholder="Qty"></div>
+                             <div class="col-2">
+                               <input type="text" name="amount-input[]" value="" id="spares-input" class="form-control" placeholder="Amount"></div>
+                           </div>`);
+                      }
                       for (i in data.list_of_spares){
                            var { spares, quantity, amount } = JSON.parse(data.list_of_spares[i]);
                            if(i == 0){
@@ -268,7 +360,7 @@ $(document).ready(function(){
        });
        $('#update_external_job').on("submit", function(event){  
             event.preventDefault();  
-            var invoice = $('#invoice-input-e').val(); 
+            var invoice = $('#e-invoice-input').val(); 
             $('#external_status').text('').fadeIn();
             $.ajax({  
                 url:"functions/update_external_jobs.php",  
@@ -280,7 +372,8 @@ $(document).ready(function(){
                 success:function(data){  
                      if(data == 'successful'){  
                        $('#external_status').text('Update Successful').fadeOut(2500); 
-                       $('#in'+button_id).text(invoice); 
+                       $('#in'+button_id).text("#"+invoice); 
+                       external_invoice = $('#e-invoice-input').val();
                    } else {
                        $('#external_status').text('').fadeIn();
                        alert(data);
@@ -302,7 +395,8 @@ $(document).ready(function(){
                 success:function(data){  
                      if(data == 'successful'){  
                        $('#internal_status').text('Update Successful').fadeOut(2500);   
-                       $('#in'+button_id).text(invoice); 
+                       $('#in'+button_id).text("#"+invoice); 
+                       internal_invoice = $('#i-invoice-input').val();
                    } else {
                        $('#internal_status').text('').fadeIn();
                        alert(data);
@@ -313,53 +407,75 @@ $(document).ready(function(){
        $('#job_active_status_change_external').on("submit", function(event){  
             event.preventDefault(); 
             var external_job_count = parseInt($('#active-external-count').text()); 
-            var completed_job_count = parseInt($('#completed-jobs').text());   
-            $.ajax({  
-                url:"functions/update_status.php",  
-                method:"POST",  
-                data:$('#job_active_status_change_external').serialize() + '&job_id=' + external_id + '&job_type=external',   
-                success:function(data){ 
-                    if(data == '1'){
-                       $('#'+button_id).remove();
-                       $('#t'+button_id).append('<span class="role admin" id="'+button_id+'">In Progress</span>');
-                       $('#active-external-count').text(external_job_count + 1);
-                       $('#completed-jobs').text(completed_job_count - 1);
-                       $('#view_external_job').modal('hide'); 
-                    } else if(data == '0'){
-                       $('#'+button_id).remove();
-                       $('#t'+button_id).append('<span class="role member" id="'+button_id+'">Completed</span>');
-                       $('#active-external-count').text(external_job_count - 1);
-                       $('#completed-jobs').text(completed_job_count + 1);
-                       $('#view_external_job').modal('hide');
-                    }
-                 }  
-            });      
+            var completed_job_count = parseInt($('#completed-jobs').text());  
+            $('#external_status').text('').fadeIn();
+            var active = "";
+            if(external_invoice != ""){
+                $.ajax({  
+                    url:"functions/update_status.php",  
+                    method:"POST",  
+                    data:$('#job_active_status_change_external').serialize() + '&job_id=' + external_id + '&job_type=external',   
+                    success:function(data){ 
+                        active = data;
+                        if(data == '1'){
+                           $('#'+button_id).remove();
+                           $('#t'+button_id).append('<span class="role admin" id="'+button_id+'">In Progress</span>');
+                           $('#active-external-count').text(external_job_count + 1);
+                           $('#completed-jobs').text(completed_job_count - 1);
+                           $('#view_external_job').modal('hide'); 
+                        } else if(data == '0'){
+                           $('#'+button_id).remove();
+                           $('#t'+button_id).append('<span class="role member" id="'+button_id+'">Completed</span>');
+                           $('#active-external-count').text(external_job_count - 1);
+                           $('#completed-jobs').text(completed_job_count + 1);
+                           $('#view_external_job').modal('hide');
+                        }
+                     }  
+                });   
+            } else {
+              if(external_active == '1'){
+                  $('#external_status').html('<p style="color:red;">Please Enter An Invoice Number Before Closing An Issue.</p>').fadeOut(6500); 
+              } else if(external_active == '0'){
+                  $('#external_status').html('<p style="color:red;">Please Enter An Invoice Number Before Opening An Issue.</p>').fadeOut(6500); 
+              }
+            }   
        });
        $('#job_active_status_change_internal').on("submit", function(event){  
             event.preventDefault();  
             var internal_job_count = parseInt($('#active-internal-count').text()); 
-            var completed_job_count = parseInt($('#completed-jobs').text());      
-            $.ajax({  
-                url:"functions/update_status.php",  
-                method:"POST",  
-                data:$('#job_active_status_change_internal').serialize() + '&job_id=' + internal_id + '&job_type=internal',   
-                success:function(data){ 
-                    if(data == '1'){
-                       $('#'+button_id).remove();
-                       $('#t'+button_id).append('<span class="role admin" id="'+button_id+'">In Progress</span>');
-                       $('#active-internal-count').text(internal_job_count + 1);
-                       $('#completed-jobs').text(completed_job_count - 1);
-                       $('#view_internal_job').modal('hide'); 
-                    } else if(data == '0'){
-                       $('#'+button_id).remove();
-                       $('#t'+button_id).append('<span class="role member" id="'+button_id+'">Completed</span>');
-                       $('#active-internal-count').text(internal_job_count - 1);
-                       $('#completed-jobs').text(completed_job_count + 1);
-                       $('#view_internal_job').modal('hide');
-                    }
-                 }  
-            });      
-       });  
+            var completed_job_count = parseInt($('#completed-jobs').text());
+            var active = "";
+            $('#internal_status').text('').fadeIn();
+            if(internal_invoice != ""){
+                $.ajax({  
+                    url:"functions/update_status.php",  
+                    method:"POST",  
+                    data:$('#job_active_status_change_internal').serialize() + '&job_id=' + internal_id + '&job_type=internal',   
+                    success:function(data){ 
+                        active = data;
+                        if(data == '1'){
+                           $('#'+button_id).remove();
+                           $('#t'+button_id).append('<span class="role admin" id="'+button_id+'">In Progress</span>');
+                           $('#active-internal-count').text(internal_job_count + 1);
+                           $('#completed-jobs').text(completed_job_count - 1);
+                           $('#view_internal_job').modal('hide'); 
+                        } else if(data == '0'){
+                           $('#'+button_id).remove();
+                           $('#t'+button_id).append('<span class="role member" id="'+button_id+'">Completed</span>');
+                           $('#active-internal-count').text(internal_job_count - 1);
+                           $('#completed-jobs').text(completed_job_count + 1);
+                           $('#view_internal_job').modal('hide');
+                        }
+                     }  
+                });
+            } else {
+               if(internal_active == '1'){
+                   $('#internal_status').html('<p style="color:red;">Please Enter An Invoice Number Before Closing An Issue.</p>').fadeOut(6500); 
+               } else if(internal_active == '0'){
+                   $('#internal_status').html('<p style="color:red;">Please Enter An Invoice Number Before Opening An Issue.</p>').fadeOut(6500); 
+               }
+            }      
+        });  
   });  
   $(document).ready(function(){
 

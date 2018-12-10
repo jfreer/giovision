@@ -78,44 +78,52 @@ function fetch_customer($conn, $cust_id){
 	return $response;
 }
 
-function fetch_customer_external_job($conn, $job_id){
-	$response = "";
-	$active_status = "";
-    $sql = "SELECT * FROM `external_jobs` WHERE `external_job_id` = '$job_id'";
+
+function fetch_spares_list_internal($conn, $job_id){
+  $response = "";
+  $active_status = "";
+    $sql = "SELECT * FROM `list_of_spares_internal` WHERE `internal_job_id` = '$job_id'";
     $result = $conn->query($sql);
+
+    $response .= '<h3 align="center">List Of Spares</h3><br /><br /> 
+                   <table border="1" cellspacing="0" cellpadding="5">
+                   <thead>
+                       <tr>
+                           <th><strong>Spares</strong></th>
+                           <th><strong>Quantity</strong></th>
+                           <th><strong>Amount</strong></th>
+                       </tr>
+                   </thead>
+                   <tbody>';
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             $id              = clean_input($row["id"]);
-            $external_job_id = clean_input($row["external_job_id"]);
-            $description     = clean_input($row["description"]);
-            $active          = clean_input($row["active"]);
-            $date            = clean_input($row["date"]);
+            $internal_job_id = clean_input($row["internal_job_id"]);
+            $spares          = clean_input($row["spares"]);
+            $quantity        = clean_input($row["quantity"]);
+            $amount          = clean_input($row["amount"]);
 
-            $response .= '<h3 align="center">External Job Information</h3><br /><br /> 
-                           <table border="1" cellspacing="0" cellpadding="5">
-                           <tbody>
-                             <tr>
-                               <th scope="row"><strong>Description: </strong></th>
-                               <td>'.$description.'</td>
-                             </tr>
-                             <tr>
-                               <th scope="row"><strong>Date Issued: </strong></th>
-                               <td>'.$date.'</td>
-                             </tr>
-                           </tbody>
-                       </table>';  
-
+            $response .= '<tr>
+                            <td>'.$spares.'</td>
+                            <td>'.$quantity.'</td>
+                            <td>R'.$amount.'</td>
+                         </tr>';
+                          
         }
     }
+
+    $response .=  '</tbody>
+                </table>';  
+
 
     return $response;
 }
 
-function fetch_spares_list($conn, $job_id){
+function fetch_spares_list_external($conn, $job_id){
   $response = "";
   $active_status = "";
-    $sql = "SELECT * FROM `list_of_spares` WHERE `internal_job_id` = '$job_id'";
+    $sql = "SELECT * FROM `list_of_spares_external` WHERE `external_job_id` = '$job_id'";
     $result = $conn->query($sql);
 
     $response .= '<h3 align="center">List Of Spares</h3><br /><br /> 
@@ -206,7 +214,64 @@ function fetch_customer_internal_job($conn, $job_id){
 
         }
     }
-    $response .= fetch_spares_list($conn, $job_id);
+    $response .= fetch_spares_list_internal($conn, $job_id);
+    return $response;
+}
+
+function fetch_customer_external_job($conn, $job_id){
+  $response = "";
+  $active_status = "";
+    $sql = "SELECT * FROM `external_jobs` WHERE `external_job_id` = '$job_id'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $id          = clean_input($row["internal_job_id"]);
+            $article     = clean_input($row["article"]);
+            $model_no    = clean_input($row["model_no"]);
+            $fault       = clean_input($row["fault"]);
+            $damages     = clean_input($row["damages"]);
+            $description = clean_input($row["description"]);
+            $aux_equip   = clean_input($row["aux_equip"]);
+            $date        = clean_input($row["date"]);
+
+            $response .= '<h3 align="center">External Job Information</h3><br /><br /> 
+                           <table border="1" cellspacing="0" cellpadding="5">
+                           <tbody>
+                             <tr>
+                               <th scope="row"><strong>Article: </strong></th>
+                               <td>'.$article.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Model No: </strong></th>
+                               <td>'.$model_no.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Aux Equipment With: </strong></th>
+                               <td>'.$aux_equip.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Fault: </strong></th>
+                               <td>'.$fault.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Damages: </strong></th>
+                               <td>'.$damages.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Description: </strong></th>
+                               <td>'.$description.'</td>
+                             </tr>
+                             <tr>
+                               <th scope="row"><strong>Date Issued: </strong></th>
+                               <td>'.$date.'</td>
+                             </tr>
+                           </tbody>
+                       </table>';  
+
+        }
+    }
+    $response .= fetch_spares_list_external($conn, $job_id);
     return $response;
 }
 

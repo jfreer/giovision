@@ -14,13 +14,14 @@ if(isset($_POST) && !empty($_POST["cust_id"]) && isset($_POST["cust_id"])){
 	$postal_address      = clean_input_db($conn,$_POST["postal-input-u"]);
 	$tel_no              = clean_input_db($conn,$_POST["tel-input-u"]);
 	$cell_no             = clean_input_db($conn,$_POST["cell-input-u"]);
+	$pastel_no           = clean_input_db($conn,$_POST["pastel-input-u"]);
 	$email               = clean_input_db($conn,$_POST["email-input-u"]);
 	$payment_method      = clean_input_db($conn,$_POST["payment-input-u"]);
 	$multichoice_acc     = clean_input_db($conn,$_POST["multichoice-input-u"]);
 	$sabc_license        = clean_input_db($conn,$_POST["sabc-input-u"]);
 
-	$sql = "UPDATE customer SET `name`='$name', `residential_address`='$residential_address', `postal_address`='$postal_address', `tel_no`='$tel_no', `cell_no`='$cell_no', `email`='$email',
-	`payment_method`='$payment_method', `multichoice_acc`='$multichoice_acc', `sabc_license`='$sabc_license' WHERE `cust_id` = '$cust_id'";
+	$sql = "UPDATE customer SET `name`='$name', `residential_address`='$residential_address', `postal_address`='$postal_address', `tel_no`='$tel_no', `cell_no`='$cell_no', 
+	`pastel_no`='$pastel_no', `email`='$email',`payment_method`='$payment_method', `multichoice_acc`='$multichoice_acc', `sabc_license`='$sabc_license' WHERE `cust_id` = '$cust_id'";
 
 	if($conn->query($sql) == TRUE){
         echo 'successful';

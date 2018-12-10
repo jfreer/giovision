@@ -65,6 +65,12 @@ include("functions/get_all_job_information.php");
                             <div class="col-md-12">
                                 <div class="overview-wrap">
                                     <h2 class="title-1">Overview Of All Jobs</h2>
+                                    <div class="table-data__tool-right">
+                                        <a href="index.php">
+                                          <button class="au-btn au-btn-icon au-btn--blue au-btn--small">
+                                              <i class="zmdi zmdi-account"></i>View Customers</button>
+                                        </a>
+                                    </div>
                                 </div>
                                 <hr>
                             </div>
@@ -211,51 +217,51 @@ include("functions/get_all_job_information.php");
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="text-input" class="form-control-label">Article</label>
+                                               <label for="text-input" class="form-control-label">Article<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <input type="text" id="i-article-input" name="i-article-input" placeholder="Text" class="form-control">
+                                               <input type="text" id="i-article-input" name="i-article-input" placeholder="Text" class="form-control" required>
                                            </div>
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="text-input" class=" form-control-label">Model No</label>
+                                               <label for="text-input" class=" form-control-label">Model No<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <input type="text" id="i-model-input" name="i-model-input" placeholder="Text" class="form-control">
+                                               <input type="text" id="i-model-input" name="i-model-input" placeholder="Text" class="form-control" required>
                                            </div>
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="text-input" class=" form-control-label">Aux Equip With</label>
+                                               <label for="text-input" class=" form-control-label">Aux Equip With<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <input type="text" id="i-aux-input" name="i-aux-input" placeholder="Text" class="form-control">
+                                               <input type="text" id="i-aux-input" name="i-aux-input" placeholder="Text" class="form-control" required>
                                            </div>
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="textarea-input" class=" form-control-label">Fault</label>
+                                               <label for="textarea-input" class=" form-control-label">Fault<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <textarea name="i-fault-input" id="i-fault-input" rows="4" placeholder="Content..." class="form-control"></textarea>
+                                               <textarea name="i-fault-input" id="i-fault-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
                                            </div>
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="textarea-input" class=" form-control-label">Damages Noted</label>
+                                               <label for="textarea-input" class=" form-control-label">Damages Noted<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <textarea name="i-damages-input" id="i-damages-input" rows="4" placeholder="Content..." class="form-control"></textarea>
+                                               <textarea name="i-damages-input" id="i-damages-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
                                            </div>
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="textarea-input" class="form-control-label">Job Description</label>
+                                               <label for="textarea-input" class="form-control-label">Job Description<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
                                                <input type="hidden" id="i-customer-input" name="i-customer-input" value="<?php echo clean_input($_GET["cust"]) ?>">
-                                               <textarea name="i-description-input" id="i-description-input" rows="4" placeholder="Content..." class="form-control"></textarea>
+                                               <textarea name="i-description-input" id="i-description-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
                                            </div>
                                        </div>
                                        <div id="add-spare-list"></div>
@@ -300,31 +306,76 @@ include("functions/get_all_job_information.php");
                             </div>
                             <div class="modal-body">
                                <form method="post" enctype="multipart/form-data" class="form-horizontal" id="update_external_job">
-                                    <div class="card-body card-block" id="external_form">
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Invoice No</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <input type="text" id="invoice-input-e" name="invoice-input-e" placeholder="Text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="textarea-input" class=" form-control-label">Job Description</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <input type="hidden" id="e-customer-input" name="e-customer-input" value="<?php echo clean_input($_GET["cust"]) ?>">
-                                                <textarea name="description-input-e" id="description-input-e" rows="4" placeholder="Content..." class="form-control"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button type="submit" name="insert" id="insert" value="Insert" value="Insert" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-dot-circle-o"></i> Update
-                                            </button>
-                                            <div id="external_status"></div>
-                                        </div>
-                                    </div>
+                                  <div class="card-body card-block" id="external_form">
+                                      <div class="row form-group">
+                                          <div class="col col-md-3">
+                                              <label for="text-input" class=" form-control-label">Invoice No</label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                              <input type="text" id="e-invoice-input" name="e-invoice-input" placeholder="Text" class="form-control">
+                                          </div>
+                                      </div>
+                                      <div class="row form-group">
+                                          <div class="col col-md-3">
+                                              <label for="text-input" class="form-control-label">Article<span style="color: red;">*</span></label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                              <input type="text" id="e-article-input" name="e-article-input" placeholder="Text" class="form-control" required>
+                                          </div>
+                                      </div>
+                                      <div class="row form-group">
+                                          <div class="col col-md-3">
+                                              <label for="text-input" class=" form-control-label">Model No<span style="color: red;">*</span></label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                              <input type="text" id="e-model-input" name="e-model-input" placeholder="Text" class="form-control" required>
+                                          </div>
+                                      </div>
+                                      <div class="row form-group">
+                                          <div class="col col-md-3">
+                                              <label for="text-input" class=" form-control-label">Aux Equip With<span style="color: red;">*</span></label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                              <input type="text" id="e-aux-input" name="e-aux-input" placeholder="Text" class="form-control" required>
+                                          </div>
+                                      </div>
+                                      <div class="row form-group">
+                                          <div class="col col-md-3">
+                                              <label for="textarea-input" class=" form-control-label">Fault<span style="color: red;">*</span></label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                              <textarea name="e-fault-input" id="e-fault-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
+                                          </div>
+                                      </div>
+                                      <div class="row form-group">
+                                          <div class="col col-md-3">
+                                              <label for="textarea-input" class=" form-control-label">Damages Noted<span style="color: red;">*</span></label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                              <textarea name="e-damages-input" id="e-damages-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
+                                          </div>
+                                      </div>
+                                      <div class="row form-group">
+                                          <div class="col col-md-3">
+                                              <label for="textarea-input" class="form-control-label">Job Description<span style="color: red;">*</span></label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                              <input type="hidden" id="e-customer-input" name="e-customer-input" value="<?php echo clean_input($_GET["cust"]) ?>">
+                                              <textarea name="e-description-input" id="e-description-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
+                                          </div>
+                                      </div>
+                                      <div id="add-spare-list-e"></div>
+                                      <div id="spare-list-e"></div>
+                                      <div class="card-footer">
+                                          <button type="submit" name="insert" id="insert" value="Insert" value="Insert" class="btn btn-primary btn-sm">
+                                               <i class="fa fa-dot-circle-o"></i> Update
+                                           </button>
+                                          <button type="button" class="btn btn-success btn-sm" id="add-e">
+                                              <i class="fa fa-plus"></i> Add Spares
+                                          </button>
+                                          <div id="external_status"></div>
+                                      </div>
+                                  </div> 
                                </form>
                             </div>
                             <div class="modal-footer">
@@ -336,6 +387,28 @@ include("functions/get_all_job_information.php");
                                         <i class="fa fa-file"></i> Download PDF
                                     </button>
                                 </form>
+                                <button type="submit" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                                    <i class="fa fa-times"></i> Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="invoice-empty" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="largeModalLabel">Invoice Number Empty</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                               <center>
+                                 <h3>Please Insert An Invoice Number Before You Close A Job.</h3>
+                               </center>
+                            </div>
+                            <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary btn-sm" data-dismiss="modal">
                                     <i class="fa fa-times"></i> Close
                                 </button>

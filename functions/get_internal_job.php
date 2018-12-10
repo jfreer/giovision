@@ -9,7 +9,7 @@ include($path."/giovision/functions/sanitize.php");
 
 function fetch_spares_list($conn, $job_id){
   $list_array = array();
-  $sql = "SELECT * FROM `list_of_spares` WHERE `internal_job_id` = '$job_id'";
+  $sql = "SELECT * FROM `list_of_spares_internal` WHERE `internal_job_id` = '$job_id'";
   $result = $conn->query($sql);
   while($row = $result->fetch_assoc()){
      array_push($list_array,json_encode($row));

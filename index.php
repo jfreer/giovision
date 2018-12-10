@@ -64,6 +64,10 @@ include("functions/get_all_jobs.php");
                             <div class="col-md-12">
                                 <div class="overview-wrap">
                                     <h2 class="title-1">overview</h2>
+                                    <a href="view-all-jobs.php">
+                                      <button class="au-btn au-btn-icon au-btn--blue au-btn--small">
+                                          <i class="zmdi zmdi-file-plus"></i>View All Jobs</button>
+                                    </a>
                                 </div>
                                 <hr>
                             </div>
@@ -204,19 +208,19 @@ include("functions/get_all_jobs.php");
                                    <form method="post" enctype="multipart/form-data" class="form-horizontal" id="insert_form">
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="text-input" class=" form-control-label">Name</label>
+                                               <label for="text-input" class=" form-control-label">Name<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <input type="text" id="name-input" name="name-input" placeholder="Text" class="form-control">
+                                               <input type="text" id="name-input" name="name-input" placeholder="Text" class="form-control" required>
                                                <small class="form-text text-muted">Please enter your name</small>
                                            </div>
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="email-input" class=" form-control-label">Email</label>
+                                               <label for="email-input" class=" form-control-label">Email<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <input type="email" id="email-input" name="email-input" placeholder="Enter Email" class="form-control">
+                                               <input type="email" id="email-input" name="email-input" placeholder="Enter Email" class="form-control" required>
                                                <small class="help-block form-text">Please enter your email</small>
                                            </div>
                                        </div>
@@ -231,19 +235,28 @@ include("functions/get_all_jobs.php");
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="text-input" class=" form-control-label">Cell No</label>
+                                               <label for="text-input" class=" form-control-label">Cell No<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <input type="number" id="cell-input" name="cell-input" placeholder="Text" class="form-control">
+                                               <input type="number" id="cell-input" name="cell-input" placeholder="Text" class="form-control" required>
                                                <small class="form-text text-muted">Please enter your cell number</small>
                                            </div>
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="textarea-input" class=" form-control-label">Residential Address</label>
+                                               <label for="text-input" class=" form-control-label">Pastel No<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <textarea name="residential-input" id="residential-input" rows="4" placeholder="Content..." class="form-control"></textarea>
+                                               <input type="number" id="pastel-input" name="pastel-input" placeholder="Text" class="form-control" required>
+                                               <small class="form-text text-muted">Please enter your pastel number</small>
+                                           </div>
+                                       </div>
+                                       <div class="row form-group">
+                                           <div class="col col-md-3">
+                                               <label for="textarea-input" class=" form-control-label">Residential Address<span style="color: red;">*</span></label>
+                                           </div>
+                                           <div class="col-12 col-md-9">
+                                               <textarea name="residential-input" id="residential-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
                                            </div>
                                        </div>
                                        <div class="row form-group">
@@ -325,19 +338,19 @@ include("functions/get_all_jobs.php");
                                    <form method="post" enctype="multipart/form-data" class="form-horizontal" id="update_customer_form">
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="text-input" class=" form-control-label">Name</label>
+                                               <label for="text-input" class=" form-control-label">Name<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <input type="text" id="name-input-u" name="name-input-u" placeholder="Text" class="form-control">
+                                               <input type="text" id="name-input-u" name="name-input-u" placeholder="Text" class="form-control" required>
                                                <small class="form-text text-muted">Please enter your name</small>
                                            </div>
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="email-input" class=" form-control-label">Email</label>
+                                               <label for="email-input" class=" form-control-label">Email<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <input type="email" id="email-input-u" name="email-input-u" placeholder="Enter Email" class="form-control">
+                                               <input type="email" id="email-input-u" name="email-input-u" placeholder="Enter Email" class="form-control" required>
                                                <small class="help-block form-text">Please enter your email</small>
                                            </div>
                                        </div>
@@ -352,19 +365,28 @@ include("functions/get_all_jobs.php");
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="text-input" class=" form-control-label">Cell No</label>
+                                               <label for="text-input" class=" form-control-label">Cell No<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <input type="number" id="cell-input-u" name="cell-input-u" placeholder="Text" class="form-control">
+                                               <input type="number" id="cell-input-u" name="cell-input-u" placeholder="Text" class="form-control" required>
                                                <small class="form-text text-muted">Please enter your cell number</small>
                                            </div>
                                        </div>
                                        <div class="row form-group">
                                            <div class="col col-md-3">
-                                               <label for="textarea-input" class=" form-control-label">Residential Address</label>
+                                               <label for="text-input" class=" form-control-label">Pastel No<span style="color: red;">*</span></label>
                                            </div>
                                            <div class="col-12 col-md-9">
-                                               <textarea name="residential-input-u" id="residential-input-u" rows="4" placeholder="Content..." class="form-control"></textarea>
+                                               <input type="number" id="pastel-input-u" name="pastel-input-u" placeholder="Text" class="form-control" required>
+                                               <small class="form-text text-muted">Please enter your pastel number</small>
+                                           </div>
+                                       </div>
+                                       <div class="row form-group">
+                                           <div class="col col-md-3">
+                                               <label for="textarea-input" class=" form-control-label">Residential Address<span style="color: red;">*</span></label>
+                                           </div>
+                                           <div class="col-12 col-md-9">
+                                               <textarea name="residential-input-u" id="residential-input-u" rows="4" placeholder="Content..." class="form-control" required></textarea>
                                            </div>
                                        </div>
                                        <div class="row form-group">

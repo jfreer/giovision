@@ -15,7 +15,7 @@ function insert_spare_list($conn, $internal_job_id){
        	   $spare_qty    = clean_input_db($conn, $_POST["qty-input"][$i]);
        	   $spare_amount = clean_input_db($conn, $_POST["amount-input"][$i]);
        	   if(!empty($spare_name) && !empty($spare_qty) && !empty($spare_amount)){
-	           $sql = "INSERT INTO list_of_spares (internal_job_id, spares, quantity, amount) VALUES('$internal_job_id', '$spare_name', '$spare_qty', '$spare_amount')";  
+	           $sql = "INSERT INTO list_of_spares_internal (internal_job_id, spares, quantity, amount) VALUES('$internal_job_id', '$spare_name', '$spare_qty', '$spare_amount')";  
 	           $conn->query($sql);
 	       }
         } 

@@ -78,59 +78,59 @@ include("functions/get_customer_information.php");
                                 <div class="card-body card-block" id="customer_form">
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="text-input" class=" form-control-label">Invoice No</label>
+                                            <label for="text-input" class=" form-control-label">Invoice No<span style="color: red;">*</span></label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="invoice-input" name="invoice-input" placeholder="Text" class="form-control">
+                                            <input type="text" id="invoice-input" name="invoice-input" placeholder="Text" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="text-input" class=" form-control-label">Article</label>
+                                            <label for="text-input" class=" form-control-label">Article<span style="color: red;">*</span></label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="article-input" name="article-input" placeholder="Text" class="form-control">
+                                            <input type="text" id="article-input" name="article-input" placeholder="Text" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="text-input" class=" form-control-label">Model No</label>
+                                            <label for="text-input" class=" form-control-label">Model No<span style="color: red;">*</span></label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="model-input" name="model-input" placeholder="Text" class="form-control">
+                                            <input type="text" id="model-input" name="model-input" placeholder="Text" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="text-input" class=" form-control-label">Aux Equip With</label>
+                                            <label for="text-input" class=" form-control-label">Aux Equip With<span style="color: red;">*</span></label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="aux-input" name="aux-input" placeholder="Text" class="form-control">
+                                            <input type="text" id="aux-input" name="aux-input" placeholder="Text" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="textarea-input" class=" form-control-label">Fault</label>
+                                            <label for="textarea-input" class=" form-control-label">Fault<span style="color: red;">*</span></label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <textarea name="fault-input" id="fault-input" rows="4" placeholder="Content..." class="form-control"></textarea>
+                                            <textarea name="fault-input" id="fault-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="textarea-input" class=" form-control-label">Damages Noted</label>
+                                            <label for="textarea-input" class=" form-control-label">Damages Noted<span style="color: red;">*</span></label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <textarea name="damages-input" id="damages-input" rows="4" placeholder="Content..." class="form-control"></textarea>
+                                            <textarea name="damages-input" id="damages-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="textarea-input" class=" form-control-label">Job Description</label>
+                                            <label for="textarea-input" class=" form-control-label">Job Description<span style="color: red;">*</span></label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <input type="hidden" id="customer-input" name="customer-input" value="<?php echo clean_input($_GET["cust"]) ?>">
-                                            <textarea name="description-input" id="description-input" rows="4" placeholder="Content..." class="form-control"></textarea>
+                                            <textarea name="description-input" id="description-input" rows="4" placeholder="Content..." class="form-control" required></textarea>
                                         </div>
                                     </div>
                                     <div class="row form-group">
